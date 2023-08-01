@@ -36,4 +36,10 @@ contract TestPrecompile {
             return hex"1234";
         }
     }
+
+    function derive3(bytes calldata input) public view returns (bool, bytes memory) {
+        address precompile = 0x0000000000000000000000000000000000000100;
+        (bool success, bytes memory data) = precompile.staticcall(input);
+        return (success, data);
+    }
 }
