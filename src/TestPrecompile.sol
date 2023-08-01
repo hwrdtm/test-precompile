@@ -22,4 +22,16 @@ contract TestPrecompile {
 
         return output;
     }
+
+    function derive2() public view returns (bytes memory) {
+        address precompile = 0x0000000000000000000000000000000000000100;
+
+        (bool success, bytes memory data) = precompile.staticcall("");
+
+        if (success) {
+            return data;
+        } else {
+            return hex"1234";
+        }
+    }
 }
